@@ -6,14 +6,12 @@ import (
 )
 
 func echoHandler(writer http.ResponseWriter, req *http.Request) {
-	conn, err := upgrader.Upgrade(writer, req, nil)
+	conn, deferFunc, err := upgradeConnection(writer, req)
 	if err != nil {
 		log.Print("failed to upgrade websocket:", err)
 		return
 	}
-	defer func() {
-		_ = conn.Close()
-	}()
+	defer deferFunc()
 
 	for {
 		msgType, msg, err := conn.ReadMessage()
