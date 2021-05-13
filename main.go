@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"github.com/kodability/kod-ws-server/ws"
+)
 
 func main() {
-	fmt.Println("Hello Kodability!")
+	ws.StartServer(8080)
 }

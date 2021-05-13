@@ -9,7 +9,6 @@ tasks:
   # install dependencies
   install:
     cmds:
-      - go get
       - go mod vendor
 
   # build binary
